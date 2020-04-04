@@ -8,9 +8,6 @@ exports.up = function (knex) {
 
         table.integer('status_celular_cod').notNullable()
         table.foreign('status_celular_cod').references('cod').inTable('status_celular')
-
-        table.integer('promotor_cod')
-        table.foreign('promotor_cod').references('cod').inTable('promotor')
     })
 };
 
