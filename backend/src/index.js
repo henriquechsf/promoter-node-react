@@ -7,7 +7,7 @@ app.use(express.json())
 app.use(routes)
 
 
-const PORT = 3000
+const PORT = 3001
 app.listen(PORT, () => {
     console.log('Executando na porta ' + PORT)
 })

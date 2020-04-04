@@ -14,7 +14,9 @@ module.exports = {
             .offset((page - 1) * 10)
             .select([
                 'promotor.cod',
-                'promotor.nome'
+                'promotor.nome',
+                'promotor.cod_supervisao',
+                'promotor.cod_status'
             ])
 
         // contagem de promotores
