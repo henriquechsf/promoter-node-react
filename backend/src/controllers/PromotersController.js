@@ -15,8 +15,8 @@ module.exports = {
             .select([
                 'promotor.cod',
                 'promotor.nome',
-                'promotor.cod_supervisao',
-                'promotor.cod_status'
+                'promotor.supervisao_cod',
+                'promotor.status_cod'
             ])
 
         // contagem de promotores
