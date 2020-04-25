@@ -8,7 +8,7 @@ import './styles.css';
 
 import api from '../../services/api'
 
-import { Layout, Menu, PageHeader, Button, Table, Tag } from 'antd';
+import { Layout, Menu, PageHeader, Button, Table, Tag, Badge } from 'antd';
 import {
     UserOutlined,
     MobileOutlined,
@@ -36,56 +36,32 @@ const SiderDemo = (props) => {
 
         {
             title: 'Cod',
-            dataIndex: 'promoters.cod',
-            key: 'promoters.cod',
+            dataIndex: 'cod',
+            key: 'cod',
         },
         {
             title: 'Nome',
-            dataIndex: 'promoters.name',
-            key: 'name',
+            dataIndex: 'nome',
+            key: 'nome',
             render: text => <a>{text}</a>,
         },
-        /*{
-            title: 'Tags',
-            key: 'tags',
-            dataIndex: 'tags',
-            render: tags => (
-                <span>
-                    {tags.map(tag => {
-                        let color = tag.length > 5 ? 'geekblue' : 'green';
-                        if (tag === 'loser') {
-                            color = 'volcano';
-                        }
-                        return (
-                            <Tag color={color} key={tag}>
-                                {tag.toUpperCase()}
-                            </Tag>
-                        );
-                    })}
-                </span>
-            ),
+        {
+            title: 'Supervisão',
+            dataIndex: 'supervisaoNome',
+            key: 'supervisaoNome',
         },
         {
-            title: 'Action',
-            key: 'action',
-            render: (text, record) => (
-                <span>
-                    <a style={{ marginRight: 16 }}>Invite {record.name}</a>
-                    <a>Delete</a>
-                </span>
-            ),
-        },*/
-    ];
-    console.log(promoters)
-    // dados enviados para a tabela
-    /*const data = [
+            title: 'Gerẽncia',
+            dataIndex: 'gerenciaNome',
+            key: 'gerenciaNome',
+        },
         {
-            cod: dados.cod,
-            name: 'John Brown',
-            tags: ['nice', 'developer'],
+            title: 'Gestor',
+            dataIndex: 'gestorNome',
+            key: 'gestorNome',
         },
 
-    ];*/
+    ];
 
     return (
         <Layout>
@@ -129,7 +105,7 @@ const SiderDemo = (props) => {
                         ghost={false}
                         onBack={() => window.history.back()}
                         title="Promotores"
-                        subTitle="Listagem total"
+                        subTitle={promoters.length}
                         extra={[
                             <Button key="3" type="danger">Ocorrência</Button>,
                             <Button key="2">Atendimento</Button>,
@@ -144,9 +120,8 @@ const SiderDemo = (props) => {
                             minHeight: 280,
                         }}
                     >
-                        Content
 
-                            <Table columns={columns} dataSource={promoters} />
+                        <Table columns={columns} dataSource={promoters} />
 
                     </Content>
                 </Layout>
