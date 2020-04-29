@@ -19,7 +19,6 @@ module.exports = {
             .select([
                 'prom.cod',
                 'prom.nome',
-                'prom.status_cod',
                 'sup.nome as supervisaoNome',
                 'ger.nome as gerenciaNome',
                 'ges.nome as gestorNome',
@@ -32,6 +31,27 @@ module.exports = {
         res.header('X-Total-Count', count['count(*)'])
 
         return res.json(promoters)
+    },
+
+    // lista promotor por id
+    async show(req, res) {
+
+        const promoter = await connection('promotor as prom')
+            .where('prom.cod', '=', req.params.cod)
+            .leftJoin('supervisao as sup', 'prom.supervisao_cod', '=', 'sup.cod')
+            .leftJoin('gerencia as ger', 'ger.cod', '=', 'sup.gerencia_cod')
+            .leftJoin('gestor as ges', 'sup.gestor_cod', '=', 'ges.cod')
+            .leftJoin('status', 'prom.status_cod', '=', 'status.cod')
+            .select([
+                'prom.cod',
+                'prom.nome',
+                'sup.nome as supervisaoNome',
+                'ger.nome as gerenciaNome',
+                'ges.nome as gestorNome',
+                'status.nome as statusNome'
+            ])
+
+        return res.json(promoter)
     }
 
 }
